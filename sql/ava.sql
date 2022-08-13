@@ -3,6 +3,7 @@
 -- ----------------------------
 -- 1、学生表
 -- ----------------------------
+drop table if exists app_student;
 create table ry.app_student (
                           student_id           bigint(20)      not null auto_increment    comment '学生ID',
                           student_name         varchar(30)     not null                   comment '学生姓名',
@@ -53,6 +54,7 @@ values('学生信息导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'app
 -- ----------------------------
 -- 2、学院表
 -- ----------------------------
+drop table if exists app_college;
 create table ry.app_college (
                                 college_id           bigint(20)      not null auto_increment    comment '学院ID',
                                 college_name         varchar(30)     not null                   comment '学院名称',
@@ -66,6 +68,22 @@ create table ry.app_college (
                                 remark            varchar(500)    default null               comment '备注',
                                 primary key (college_id)
 ) engine=innodb auto_increment=200 comment = '学院信息表';
+
+-- ----------------------------
+-- 3、专业表
+-- ----------------------------
+drop table if exists app_major;
+create table ry.app_major (
+                              major_id           bigint(20)      not null auto_increment    comment '专业ID',
+                              major_name         varchar(30)     not null                   comment '专业名称',
+                              college_id           bigint(20)      not null                  comment '所属学院ID',
+                              create_by         varchar(64)     default ''                 comment '创建者',
+                              create_time       datetime                                   comment '创建时间',
+                              update_by         varchar(64)     default ''                 comment '更新者',
+                              update_time       datetime                                   comment '更新时间',
+                              remark            varchar(500)    default null               comment '备注',
+                              primary key (major_id)
+) engine=innodb auto_increment=300 comment = '专业信息表';
 
 # 原版
 create table ry.student
