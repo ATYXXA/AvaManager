@@ -186,6 +186,13 @@
                 <version>${avamanager.version}</version>
             </dependency>
 
+            <!-- 业务模块 -->
+            <dependency>
+                <groupId>com.avamanager</groupId>
+                <artifactId>avamanager-app</artifactId>
+                <version>${avamanager.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -196,6 +203,7 @@
         <module>avamanager-quartz</module>
         <module>avamanager-generator</module>
         <module>avamanager-common</module>
+        <module>avamanager-app</module>
     </modules>
     <packaging>pom</packaging>
 

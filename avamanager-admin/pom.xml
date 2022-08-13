@@ -61,6 +61,12 @@
             <artifactId>avamanager-generator</artifactId>
         </dependency>
 
+        <!-- 业务模块 -->
+        <dependency>
+            <groupId>com.avamanager</groupId>
+            <artifactId>avamanager-app</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
