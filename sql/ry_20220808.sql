@@ -3,10 +3,10 @@
 -- ----------------------------
 drop table if exists sys_dept;
 create table sys_dept (
-  dept_id           bigint(20)      not null auto_increment    comment '部门id',
-  parent_id         bigint(20)      default 0                  comment '父部门id',
+  dept_id           bigint(20)      not null auto_increment    comment '学院或专业id',
+  parent_id         bigint(20)      default 0                  comment '父学院或专业id',
   ancestors         varchar(50)     default ''                 comment '祖级列表',
-  dept_name         varchar(30)     default ''                 comment '部门名称',
+  dept_name         varchar(30)     default ''                 comment '学院或专业名称',
   order_num         int(4)          default 0                  comment '显示顺序',
   leader            varchar(20)     default null               comment '负责人',
   phone             varchar(11)     default null               comment '联系电话',
@@ -23,16 +23,16 @@ create table sys_dept (
 -- ----------------------------
 -- 初始化-部门表数据
 -- ----------------------------
-insert into sys_dept values(100,  0,   '0',          '若依科技',   0, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(101,  100, '0,100',      '深圳总公司', 1, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(102,  100, '0,100',      '长沙分公司', 2, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(103,  101, '0,100,101',  '研发部门',   1, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(104,  101, '0,100,101',  '市场部门',   2, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(105,  101, '0,100,101',  '测试部门',   3, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(106,  101, '0,100,101',  '财务部门',   4, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(107,  101, '0,100,101',  '运维部门',   5, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(108,  102, '0,100,102',  '市场部门',   1, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(109,  102, '0,100,102',  '财务部门',   2, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(100,  0,   '0',          '华南理工大学',   0, '高松', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(101,  100, '0,100',      '软件学院', 1, '小红', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(102,  100, '0,100',      '计算机科学与工程学院', 2, '小红', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(103,  101, '0,100,101',  '软件工程',   1, '小红', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(104,  101, '0,100,101',  '软件工程（卓越班）',   2, '小红', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(105,  101, '0,100,101',  '软件工程（中澳班）',   3, '小红', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(106,  101, '0,100,101',  '软件工程1班',   4, '小红', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(107,  101, '0,100,101',  '软件工程2班',   5, '小红', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(108,  102, '0,100,102',  '计算机全英联合班',   1, '小红', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(109,  102, '0,100,102',  '信息工程',   2, '小红', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
 
 
 -- ----------------------------
@@ -122,8 +122,9 @@ create table sys_role (
 -- ----------------------------
 -- 初始化-角色信息表数据
 -- ----------------------------
-insert into sys_role values('1', '超级管理员',  'admin',  1, 1, 1, 1, '0', '0', 'admin', sysdate(), '', null, '超级管理员');
-insert into sys_role values('2', '普通角色',    'common', 2, 2, 1, 1, '0', '0', 'admin', sysdate(), '', null, '普通角色');
+insert into sys_role values('1', '管理员',  'admin',  1, 1, 1, 1, '0', '0', 'admin', sysdate(), '', null, '管理员');
+insert into sys_role values('2', '学生',    'common', 2, 2, 1, 1, '0', '0', 'admin', sysdate(), '', null, '学生');
+insert into sys_role values('3', '教师',    'common', 3, 3, 1, 1, '0', '0', 'admin', sysdate(), '', null, '教职工');
 
 
 -- ----------------------------
@@ -465,6 +466,13 @@ insert into sys_dict_type values(7,  '通知类型', 'sys_notice_type',     '0',
 insert into sys_dict_type values(8,  '通知状态', 'sys_notice_status',   '0', 'admin', sysdate(), '', null, '通知状态列表');
 insert into sys_dict_type values(9,  '操作类型', 'sys_oper_type',       '0', 'admin', sysdate(), '', null, '操作类型列表');
 insert into sys_dict_type values(10, '系统状态', 'sys_common_status',   '0', 'admin', sysdate(), '', null, '登录状态列表');
+# 增加
+insert into sys_dict_type values(11, '学生状态', 'app_student_status',   '0', 'admin', sysdate(), '', null, '学生状态列表');
+insert into sys_dict_type values(12, '教职工状态', 'app_teacher_status',   '0', 'admin', sysdate(), '', null, '教职工状态列表');
+insert into sys_dict_type values(13, '课程性质', 'app_course_property',   '0', 'admin', sysdate(), '', null, '课程性质列表');
+insert into sys_dict_type values(14, '课程类别', 'app_course_category',   '0', 'admin', sysdate(), '', null, '课程类别列表');
+insert into sys_dict_type values(15, '通选课课程归属', 'app_course_ascription',   '0', 'admin', sysdate(), '', null, '通选课归属列表');
+insert into sys_dict_type values(16, '考试类型', 'app_test_category',   '0', 'admin', sysdate(), '', null, '考试类型列表');
 
 
 -- ----------------------------
@@ -518,7 +526,25 @@ insert into sys_dict_data values(25, 8,  '生成代码', '8',       'sys_oper_ty
 insert into sys_dict_data values(26, 9,  '清空数据', '9',       'sys_oper_type',       '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '清空操作');
 insert into sys_dict_data values(27, 1,  '成功',     '0',       'sys_common_status',   '',   'primary', 'N', '0', 'admin', sysdate(), '', null, '正常状态');
 insert into sys_dict_data values(28, 2,  '失败',     '1',       'sys_common_status',   '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '停用状态');
-
+# 增加
+insert into sys_dict_data values(30, 1,  '正常在校',     '0',       'app_student_status',   '',   'primary',  'Y', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(31, 2,  '休学',     '1',       'app_student_status',   '',   'info',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(32, 3,  '毕业',     '2',       'app_student_status',   '',   'info',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(33, 4,  '转学',     '3',       'app_student_status',   '',   'info',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(34, 1,  '正常在校',     '0',       'app_teacher_status',   '',   'primary',  'Y', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(35, 2,  '休假',     '1',       'app_teacher_status',   '',   'info',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(36, 3,  '出差',     '2',       'app_teacher_status',   '',   'info',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(37, 4,  '已离职',     '3',       'app_teacher_status',   '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(38, 1,  '必修课',     '0',       'app_course_property',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(39, 2,  '选修课',     '1',       'app_course_property',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(40, 1,  '公共课',     '0',       'app_course_category',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(41, 2,  '专业课',     '1',       'app_course_category',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(42, 3,  '实践课',     '2',       'app_course_category',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(43, 4,  '通选课',     '3',       'app_course_category',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(44, 1,  '公共课',     '0',       'app_test_category',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(45, 2,  '专业课',     '1',       'app_test_category',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(46, 3,  '实践课',     '2',       'app_test_category',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
+insert into sys_dict_data values(47, 4,  '通选课',     '3',       'app_test_category',   '',   '',  'N', '0', 'admin', sysdate(), '', null, '');
 
 -- ----------------------------
 -- 13、参数配置表
